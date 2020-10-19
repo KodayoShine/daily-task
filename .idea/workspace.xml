@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9db9bf8c-6726-4993-bd4a-523de3ae38ed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/test/yg/day201019/ReentrantLockTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/JPG/aqs.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/test/yg/day201019/ReentrantLockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/test/yg/day201019/ReentrantLockTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +32,11 @@
     <property name="project.structure.proportion" value="0.15496576" />
     <property name="project.structure.side.proportion" value="0.30206794" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\daily\learn\everyday\src\main\resources\JPG" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -75,8 +80,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603115298336</updated>
-      <workItem from="1603115303609" duration="4025000" />
+      <workItem from="1603115303609" duration="5526000" />
     </task>
+    <task id="LOCAL-00001" summary="线程交替打印">
+      <created>1603119407625</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1603119407625</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,5 +105,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="线程交替打印" />
+    <option name="LAST_COMMIT_MESSAGE" value="线程交替打印" />
   </component>
 </project>

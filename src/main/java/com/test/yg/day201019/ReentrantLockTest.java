@@ -7,6 +7,9 @@ import java.util.concurrent.locks.ReentrantLock;
  * 使用ReentrantLock 完成三个线程交叉打印问题
  * 有三个线程tA、tB、tC，当i为1时线程tA打印，当i为2时线程B打印，当i为3时线程C打印，并且这三个线程遵循tA唤醒tB，tB唤醒tC，tC唤醒tA的规则。
  *
+ * 可以参考jpg中的aqs图进行一个认识和了解
+ *
+ * 需要了解Condition中的等待队列的相关知识点
  */
 public class ReentrantLockTest {
 
@@ -19,7 +22,6 @@ public class ReentrantLockTest {
     public static void printA() {
         try{
             lock.lock();
-
             for (int i = 0; i < 10; i++) {
 
                 while (count % 3 != 0) {
@@ -78,8 +80,8 @@ public class ReentrantLockTest {
 
     public static void main(String[] args) throws InterruptedException {
         new Thread(()-> printA(),"tA").start();
-        new Thread(()-> printB(),"tB").start();
         new Thread(()-> printC(),"tC").start();
+        new Thread(()-> printB(),"tB").start();
 
         Thread.currentThread().join();
     }
