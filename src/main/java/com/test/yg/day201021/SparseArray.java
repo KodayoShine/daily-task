@@ -10,6 +10,28 @@ package com.test.yg.day201021;
  */
 public class SparseArray {
 
+    private int sparseArr[][];
+
+    public void init(int traverse, int vertical, int sum) {
+        sparseArr = new int[sum + 1][3];
+        sparseArr[0][0] = traverse;
+        sparseArr[0][1] = vertical;
+        sparseArr[0][2] = sum;
+    }
+
+    public void add(int count, int traverse, int vertical, int val) {
+        sparseArr[count][0] = traverse;
+        sparseArr[count][1] = vertical;
+        sparseArr[count][2] = val;
+    }
+
+    public void print() {
+        for (int i = 0; i < sparseArr.length; i++) {
+            System.out.printf("%d\t%d\t%d\t\n", sparseArr[i][0], sparseArr[i][1], sparseArr[i][2]);
+        }
+    }
+
+
     public static void main(String[] args) {
         Checkerboard checkerboard = new Checkerboard();
         checkerboard.print();
@@ -20,10 +42,8 @@ public class SparseArray {
         checkerboard.add(4, 5, Piece.white);
         checkerboard.print();
         System.out.println("====================");
-        int[][] sparseArr = checkerboard.toSparseArray();
-        for (int i = 0; i < sparseArr.length; i++) {
-            System.out.printf("%d\t%d\t%d\t\n", sparseArr[i][0], sparseArr[i][1], sparseArr[i][2]);
-        }
+        SparseArray sparseArr = checkerboard.toSparseArray();
+        sparseArr.print();
     }
 
 }
@@ -80,8 +100,23 @@ class Checkerboard {
      *
      * @return
      */
-    public int[][] toSparseArray() {
+    public SparseArray toSparseArray() {
         // 统计当前棋盘已有棋子数量
+        SparseArray sparesArr = initSparseArray();
+
+        int count = 0;
+        for (int i = 0; i < traverse; i++) {
+            for (int j = 0; j < vertical; j++) {
+                if (chessArr[i][j] != 0) {
+                    sparesArr.add(++count, i, j, chessArr[i][j]);
+                }
+            }
+        }
+
+        return sparesArr;
+    }
+
+    private Integer calculateValidData() {
         int sum = 0;
         for (int i = 0; i < traverse; i++) {
             for (int j = 0; j < vertical; j++) {
@@ -90,25 +125,13 @@ class Checkerboard {
                 }
             }
         }
-        // 创建稀疏数组
-        int sparesArr[][] = new int[sum + 1][3];
-        sparesArr[0][0] = traverse;
-        sparesArr[0][1] = vertical;
-        sparesArr[0][2] = sum;
+        return sum;
+    }
 
-        int count = 0;
-        for (int i = 0; i < traverse; i++) {
-            for (int j = 0; j < vertical; j++) {
-                if (chessArr[i][j] != 0) {
-                    count++;
-                    sparesArr[count][0] = i;
-                    sparesArr[count][1] = j;
-                    sparesArr[count][2] = chessArr[i][j];
-                }
-            }
-        }
-
-        return sparesArr;
+    private SparseArray initSparseArray() {
+        SparseArray sparseArray = new SparseArray();
+        sparseArray.init(traverse, vertical, calculateValidData());
+        return sparseArray;
     }
 
 }
