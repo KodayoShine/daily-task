@@ -26,8 +26,8 @@ public class AtomicArrayTest {
 
         int nextValue = atomicIntegerArray.incrementAndGet(0);
         System.out.println(nextValue);
-        
-        
+
+
     }
 
 

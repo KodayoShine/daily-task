@@ -34,7 +34,7 @@ public class ArrayTest {
 class ArrayQueue {
     private int maxSize;
 
-    private int first;
+    private int front;
 
     private int rear;
 
@@ -43,7 +43,7 @@ class ArrayQueue {
     public ArrayQueue(int maxSize) {
         this.maxSize = maxSize;
         arr = new int[maxSize];
-        first = rear = -1;
+        front = rear = -1;
     }
 
     public ArrayQueue() {
@@ -62,14 +62,14 @@ class ArrayQueue {
         if(isEmpty()){
             throw new RuntimeException("数组为空");
         }
-        return arr[++first];
+        return arr[++front];
     }
 
     public int showHead() {
         if(isEmpty()){
             throw new RuntimeException("数组为空");
         }
-        return arr[first];
+        return arr[front];
     }
 
     public void showAll() {
@@ -86,7 +86,7 @@ class ArrayQueue {
     }
 
     private boolean isEmpty() {
-        return rear == first;
+        return rear == front;
     }
 
 
