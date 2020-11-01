@@ -16,6 +16,10 @@ public class CircleArrayQueueTest {
 
         int i = circleArray.get();
         System.out.printf("查询当前头部数值%d\n", i);
+        i = circleArray.get();
+        System.out.printf("查询当前头部数值%d\n", i);
+        i = circleArray.get();
+        System.out.printf("查询当前头部数值%d\n", i);
         circleArray.add(10);
         circleArray.showAll();
     }
@@ -60,8 +64,9 @@ class CircleArray {
         if (isEmpty()) {
             throw new RuntimeException("空的");
         }
-        int a = (++front) % maxSize;
-        return arr[a];
+        int value = arr[front];
+        front = (front + 1) % maxSize;
+        return value;
     }
 
 
