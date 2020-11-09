@@ -1,5 +1,7 @@
 package com.test.yg.day201108;
 
+import javafx.concurrent.Worker;
+
 import java.util.HashSet;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -67,6 +69,11 @@ public class EasyThreadPoolExecutor implements EasyExecutorService {
      */
     private final HashSet<Worker> workers = new HashSet<Worker>();
 
+    /**
+     * 任务完成数量
+     */
+    private long completedTaskCount;
+
 
     public EasyThreadPoolExecutor() {
         this(defaultPoolSize, defaultQueueSize, defaultAliveTime);
@@ -118,22 +125,22 @@ public class EasyThreadPoolExecutor implements EasyExecutorService {
 
         Worker worker = new Worker(task);
         Thread t = worker.thread;
-        if(t != null) {
+        if (t != null) {
             ReentrantLock mainLock = this.mainLock;
             mainLock.lock();
             try {
-                if(!isShutDown) {
-                    if(t.isAlive()) {
+                if (!isShutDown) {
+                    if (t.isAlive()) {
                         throw new IllegalThreadStateException();
                     }
                     workers.add(worker);
-                    workerAdded= true;
+                    workerAdded = true;
 
                 }
             } finally {
                 mainLock.unlock();
             }
-            if(workerAdded) {
+            if (workerAdded) {
                 t.start();
                 workerStarted = true;
             }
@@ -143,6 +150,20 @@ public class EasyThreadPoolExecutor implements EasyExecutorService {
 
     @Override
     public void shutdown() {
+        final ReentrantLock mainLock = this.mainLock;
+        mainLock.lock();
+        try {
+            isShutDown = true;
+            for (Worker worker : workers) {
+                Thread thread = worker.thread;
+                if(!thread.isInterrupted() && worker.tryLock()) {
+                    thread.interrupt();
+                    worker.unlock();
+                }
+            }
+        } finally {
+            mainLock.unlock();
+        }
 
     }
 
@@ -152,18 +173,65 @@ public class EasyThreadPoolExecutor implements EasyExecutorService {
     }
 
     @Override
-    public Runnable getTask() throws InterruptedException {
-        return allowThreadTimeOut ? workQueue.poll(keepAliveTime, TimeUnit.SECONDS) : workQueue.take();
+    public Runnable getTask() {
+        try {
+            return allowThreadTimeOut ? workQueue.poll(keepAliveTime, TimeUnit.SECONDS) : workQueue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    private void runWorker(Worker worker) {
+    public void runWorker(Worker worker) {
+        Thread wt = Thread.currentThread();
+        Runnable task = worker.task;
+        worker.task = null;
+        boolean completedAbruptly = true;
+        try {
+            while (task != null || (task = getTask()) != null) {
+                worker.lock();
+                // 当前线程池如果关闭的话,而当前线程没有中断
+                if (isShutDown && !wt.isInterrupted()) {
+                    // 帮忙中断一波
+                    wt.interrupt();
+                }
+                try {
+                    task.run();
+                } finally {
+                    task = null;
+                    worker.completedTask++;
+                    worker.unlock();
+                }
+            }
+            completedAbruptly = false;
+        } finally {
+            processWorkerExit(worker, completedAbruptly);
+        }
+    }
 
+    private void processWorkerExit(Worker worker, boolean completedAbruptly) {
+        if (completedAbruptly) {
+            ctl.decrementAndGet();
+        }
+
+        ReentrantLock mainLock = this.mainLock;
+        mainLock.lock();
+        try {
+            completedTaskCount += worker.completedTask;
+            workers.remove(worker);
+        } finally {
+            mainLock.unlock();
+        }
+
+        if (completedAbruptly && !workQueue.isEmpty()) {
+            addWorker(null, false);
+        }
     }
 
 
     static AtomicInteger name = new AtomicInteger();
 
-    class Worker extends AbstractQueuedSynchronizer implements Runnable {
+    class Worker extends ReentrantLock implements Runnable {
 
         private Runnable task;
         private Thread thread;
@@ -173,7 +241,6 @@ public class EasyThreadPoolExecutor implements EasyExecutorService {
             this.task = task;
             this.thread = new Thread(this, "线程名称: " + name.incrementAndGet());
         }
-
 
         @Override
         public void run() {
