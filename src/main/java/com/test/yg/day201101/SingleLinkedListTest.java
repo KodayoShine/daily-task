@@ -25,6 +25,8 @@ public class SingleLinkedListTest {
 
 }
 
+
+
 class SingleLinkedList {
     // 初始化的头部节点,主要用来进行指针定位
     private Node headNode = new Node();

@@ -12,6 +12,6 @@ public interface EasyExecutorService {
 
     int getCorePoolSize();
 
-    Runnable getTask();
+    Runnable getTask() throws InterruptedException;
 
 }
