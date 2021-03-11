@@ -1,4 +1,4 @@
-package com.test.yg.day201101;
+package com.test.yg.structure;
 
 /**
  * 循环队列数组

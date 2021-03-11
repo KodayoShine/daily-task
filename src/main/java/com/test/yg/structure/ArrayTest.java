@@ -1,4 +1,4 @@
-package com.test.yg.day201101;
+package com.test.yg.structure;
 
 /**
  * 模拟数组队列,但是数组只能使用一次,浪费资源空间

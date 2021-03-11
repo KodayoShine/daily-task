@@ -1,4 +1,4 @@
-package com.test.yg.day201021;
+package com.test.yg.structure;
 
 /**
  * 稀疏数组
