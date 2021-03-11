@@ -1,4 +1,4 @@
-package com.test.yg.day201023;
+package com.test.yg.lock;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicStampedReference;

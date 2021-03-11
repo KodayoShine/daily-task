@@ -1,4 +1,4 @@
-package com.test.yg.day201019;
+package com.test.yg.lock;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;

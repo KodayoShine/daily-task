@@ -1,4 +1,4 @@
-package com.test.yg.day201021;
+package com.test.yg.lock;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

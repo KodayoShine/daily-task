@@ -1,4 +1,4 @@
-package com.test.yg.day201024;
+package com.test.yg.lock;
 
 import java.util.concurrent.atomic.AtomicIntegerArray;
 

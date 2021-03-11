@@ -1,4 +1,4 @@
-package com.test.yg.day201020;
+package com.test.yg.lock;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.Semaphore;
