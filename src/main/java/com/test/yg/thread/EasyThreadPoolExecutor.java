@@ -1,13 +1,10 @@
-package com.test.yg.day201108;
-
-import javafx.concurrent.Worker;
+package com.test.yg.thread;
 
 import java.util.HashSet;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**

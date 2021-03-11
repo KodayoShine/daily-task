@@ -1,4 +1,4 @@
-package com.test.yg.day201108;
+package com.test.yg.thread;
 
 public class Test {
 
