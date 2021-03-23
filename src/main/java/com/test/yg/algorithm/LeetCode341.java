@@ -3,9 +3,6 @@ package com.test.yg.algorithm;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 给你一个嵌套的整型列表。请你设计一个迭代器，使其能够遍历这个整型列表中的所有整数。
@@ -21,7 +18,9 @@ public class LeetCode341 {
 
     class NestedIterator implements Iterator<Integer> {
 
-        private Queue<Integer> list = new LinkedBlockingQueue<>();
+        private List<Integer> list = new ArrayList<>();
+
+        private int size = 0;
 
         public NestedIterator(List<NestedInteger> nestedList) {
             add(nestedList);
@@ -30,7 +29,7 @@ public class LeetCode341 {
         public void add(List<NestedInteger> nestedList) {
             for (NestedInteger nestedInteger : nestedList) {
                 if (nestedInteger.isInteger()) {
-                    list.offer(nestedInteger.getInteger());
+                    list.add(nestedInteger.getInteger());
                 } else {
                     add(nestedInteger.getList());
                 }
@@ -39,12 +38,12 @@ public class LeetCode341 {
 
         @Override
         public Integer next() {
-            return list.poll();
+            return list.get(size++);
         }
 
         @Override
         public boolean hasNext() {
-            return list.peek() != null;
+            return list.size() != size;
         }
     }
 
