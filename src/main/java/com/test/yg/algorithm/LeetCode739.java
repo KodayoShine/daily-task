@@ -1,5 +1,7 @@
 package com.test.yg.algorithm;
 
+import java.util.Stack;
+
 /**
  * 739. 每日温度
  * <p>
@@ -14,22 +16,21 @@ public class LeetCode739 {
     public int[] dailyTemperatures(int[] T) {
         int length = T.length;
         int[] r = new int[length];
-        r[length - 1] = 0;
-        for (int i = 0; i < length - 1; i++) {
-            int temperature = T[i];
-            int temp = i;
-            while (++temp != length && T[temp] <= temperature) {
-
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < length; i++) {
+            while (!stack.isEmpty() && T[stack.peek()] < T[i]){
+                Integer pop = stack.pop();
+                r[pop] = i - pop;
             }
-            r[i] = temp == length ? 0 : temp - i;
+            stack.push(i);
         }
         return r;
     }
 
     public static void main(String[] args) {
         LeetCode739 leetCode739 = new LeetCode739();
-        //int[] ints = leetCode739.dailyTemperatures(new int[]{89, 62, 70, 58, 47, 47, 46, 76, 100, 70}); // 8,1,5,4,3,2,1,1,0,0
-        int[] ints = leetCode739.dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73}); // 8,1,5,4,3,2,1,1,0,0
+        int[] ints = leetCode739.dailyTemperatures(new int[]{89, 62, 70, 58, 47, 47, 46, 76, 100, 70}); // 8,1,5,4,3,2,1,1,0,0
+        //int[] ints = leetCode739.dailyTemperatures(new int[]{73, 74, 75, 71, 69, 72, 76, 73}); // 1, 1, 4, 2, 1, 1, 0, 0
         for (int anInt : ints) {
             System.out.print(anInt + ",");
         }
