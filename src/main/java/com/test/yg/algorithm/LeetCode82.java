@@ -14,6 +14,14 @@ import lombok.val;
 public class LeetCode82 {
 
 
+    /**
+     * 解题思路,当前节点和下一个节点进行判断,如果不同,表明可以将当前节点放在新链表上
+     * 如果结果相同,则内部进行循环判断,找到下一个不同值
+     * 在完成全部节点后,查看临时节点是否存在数据,如果存在表明也是独立的数据,加入到链表中
+     *
+     * @param head
+     * @return
+     */
     public ListNode deleteDuplicates(ListNode head) {
         ListNode listNode = new ListNode(0);
         ListNode tl = listNode;
