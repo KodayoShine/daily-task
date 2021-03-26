@@ -1,8 +1,10 @@
 package com.test.yg.algorithm;
 
+import lombok.Data;
+
 /**
  * 存在一个按升序排列的链表，给你这个链表的头节点 head ，请你删除所有重复的元素，使每个元素 只出现一次 。
- *
+ * <p>
  * 返回同样按升序排列的结果链表。
  * <p>
  * <p>
@@ -13,37 +15,27 @@ public class LeetCode83 {
 
 
     /**
-     * 解题思路,当前节点和下一个节点进行判断,如果不同,表明可以将当前节点放在新链表上
-     * 如果结果相同,则内部进行循环判断,找到下一个不同值
-     * 在完成全部节点后,查看临时节点是否存在数据,如果存在表明也是独立的数据,加入到链表中
+     * 解题思路:
+     * 查看当前节点和下一个节点的数值是否相同
+     * 如果相同,则循环向下查找到不同的链表
+     * 再将当前链表的next指向不同的链表上
      *
      * @param head
      * @return
      */
     public ListNode deleteDuplicates(ListNode head) {
-        ListNode listNode = new ListNode(0);
-        ListNode tl = listNode;
-        ListNode tmpNode = head;
-        while (tmpNode != null) {
-            ListNode next = tmpNode.next;
-            if (next == null) {
-                break;
-            }
-            if (tmpNode.val == next.val) {
-                while (next != null && tmpNode.val == next.val) {
+        ListNode tmp = head;
+        while(tmp != null && tmp.next != null){
+            if(tmp.val == tmp.next.val){
+                ListNode next = tmp.next;
+                while(next.next != null && next.val == next.next.val){
                     next = next.next;
                 }
+                tmp.next = next.next;
             }
-            tl.next = new ListNode(tmpNode.val);
-            tl = tl.next;
-
-            tmpNode = next;
+            tmp = tmp.next;
         }
-        if(tmpNode != null){
-            tl.next = new ListNode(tmpNode.val);
-        }
-
-        return listNode.next;
+        return head;
     }
 
     public static void main(String[] args) {
@@ -58,7 +50,7 @@ public class LeetCode83 {
         System.out.println(listNode1);
     }
 
-
+    @Data
     public static class ListNode {
         int val;
         ListNode next;
