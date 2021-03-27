@@ -13,11 +13,21 @@ import lombok.Data;
 public class LeetCode61 {
 
 
+    /**
+     * 查询最后一个节点
+     * 计算整个链表的长度
+     * 再将所要移动的长度和整个链表长度做计算
+     * 求出实际移动长度
+     *
+     * @param head
+     * @param k
+     * @return
+     */
     public ListNode rotateRight(ListNode head, int k) {
         if(head == null || k == 0){
             return head;
         }
-        // 最后一个点
+        // 最后一个点节点
         ListNode lastNode = head;
         int size = 1;
         while(lastNode.next != null) {
@@ -29,13 +39,8 @@ public class LeetCode61 {
 
         lastNode.next = head;
 
-        int i = 0;
-        while(lastNode != null) {
-            if(i == k) {
-                break;
-            }
+        while(k-- > 0) {
             lastNode = lastNode.next;
-            i++;
         }
 
         head = lastNode.next;
