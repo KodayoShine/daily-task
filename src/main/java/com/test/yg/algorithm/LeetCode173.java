@@ -14,6 +14,13 @@ import java.util.List;
  */
 public class LeetCode173 {
 
+    /**
+     * 解题思路:
+     * 采用中序遍历的方式,将节点的数值都存在集合中
+     * 中序遍历:
+     * 先左 再中 最后右
+     *
+     */
     static class BSTIterator {
 
         List<Integer> lists;
@@ -47,10 +54,10 @@ public class LeetCode173 {
         treeNode.left = new TreeNode(3);
         treeNode.right = new TreeNode(15);
         BSTIterator bstIterator = new BSTIterator(treeNode);
-        bstIterator.next();
-        bstIterator.next();
-        bstIterator.next();
-
+        assert bstIterator.next() == 3;
+        assert bstIterator.next() == 7;
+        assert bstIterator.next() == 15;
+        assert !bstIterator.hasNext();
     }
 
 
