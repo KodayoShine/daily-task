@@ -18,25 +18,38 @@ import java.util.Stack;
 public class LeetCode16_26 {
 
     public int calculate(String s) {
-        Deque<Integer> stack = new LinkedList<>();
-        Deque<Character> operational = new LinkedList<>();
+        Stack<Integer> stack = new Stack<>();
         char[] chars = s.toCharArray();
 
         int length = chars.length;
-        for (int i = 0; i < length;) {
+        for (int i = 0; i < length;i++) {
             if (chars[i] == ' ') {
-                i++;
                 continue;
             }
             char tmp = chars[i];
             if (tmp == '*' || tmp == '/' || tmp == '+' || tmp == '-') {
-                operational.push(tmp);
                 i++;
+                while (i < length && chars[i] == ' ') {
+                    i++;
+                }
             }
             int num = 0;
             while (i < length && Character.isDigit(chars[i])) {
-                num = num * 10 + chars[i] - '0';
+                num = num * 10 + chars[i] - 48;
                 i++;
+            }
+            switch (tmp) {
+                case '-':
+                    num = -num;
+                    break;
+                case '*':
+                    num = stack.pop() * num;
+                    break;
+                case '/':
+                    num = stack.pop() / num;
+                    break;
+                default:
+                    break;
             }
             stack.push(num);
         }
@@ -50,7 +63,7 @@ public class LeetCode16_26 {
 
     public static void main(String[] args) {
         LeetCode16_26 leetCode16_26 = new LeetCode16_26();
-        int calculate = leetCode16_26.calculate("123132*126+12/2+7/3-456");
+        int calculate = leetCode16_26.calculate("30+12*32/7");
         System.out.println(calculate);
     }
 
