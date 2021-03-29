@@ -14,14 +14,14 @@ public class LeetCode190 {
      * @return
      */
     public int reverseBits(int n) {
-        int ans = 0;
+        int rev  = 0;
         for (int i = 0; i < 32; i++) {
             int t = (n >> i) & 1;
             if (t == 1) {
-                ans = ans | (1 << (31 - i));
+                rev  = rev  | (1 << (31 - i));
             }
         }
-        return ans;
+        return rev ;
     }
 
 
