@@ -8,6 +8,16 @@ package com.test.yg.algorithm;
  */
 public class LeetCode74 {
 
+    /**
+     * 解题思路:
+     * 循环查找每一行首个下标的数值,是否大于所要查找的目标值
+     *
+     * 对于查询到的行数依次遍历,查询到数值直接返回true
+     *
+     * @param matrix
+     * @param target
+     * @return
+     */
     public boolean searchMatrix(int[][] matrix, int target) {
         int m = matrix.length;
         int n = matrix[0].length;
