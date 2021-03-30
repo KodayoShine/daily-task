@@ -18,10 +18,8 @@ public class LeetCode74 {
             if (matrix1 > target) {
                 l = i - 1;
                 break;
-            } else if (matrix1 == target) {
-                l = i;
-                break;
             }
+            l = i;
         }
 
         if (l < 0) {
