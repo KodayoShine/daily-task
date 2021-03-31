@@ -81,6 +81,7 @@ public class LeetCode74 {
      * 3.left = mid + 1,right = mid - 1 而不是 left = mid 和 right = mid。
      * 当我们的target 元素为 16 时，然后我们此时 left = 7 ，right = 8，mid = left + (right - left) = 7 + (8-7) = 7，
      * 那如果设置 left = mid 的话，则会进入死循环，mid 值一直为7 。
+     * https://leetcode-cn.com/problems/search-a-2d-matrix/solution/yi-wen-dai-ni-gao-ding-duo-ge-er-fen-cha-2hl9/
      *
      *
      * @param matrix
