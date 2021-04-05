@@ -10,6 +10,17 @@ package com.test.yg.algorithm;
  */
 public class LeetCode88 {
 
+    /**
+     * 解题思路:
+     * 由于nums1中的长度是m + n的长度
+     * 保证每次的值都是最大的, 依次的插入到后面即可
+     * 一旦m或者n长度为0的情况下,只需要将其余的值按照剩余的顺序排列到nums1中
+     *
+     * @param nums1
+     * @param m
+     * @param nums2
+     * @param n
+     */
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         for (int i = m - 1, j = n - 1; i >= 0 || j >= 0; ) {
             int numSize = i + j + 1;
