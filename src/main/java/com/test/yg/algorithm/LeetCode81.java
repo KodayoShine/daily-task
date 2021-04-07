@@ -12,6 +12,16 @@ package com.test.yg.algorithm;
  */
 public class LeetCode81 {
 
+    /**
+     * 由于对数组进行旋转的操作,所以不确定数组的顺序
+     * 所以需要先找到有序部分
+     *
+     * 根据二分的思想,进行处理
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
     public boolean search(int[] nums, int target) {
         int l = 0;
         int r = nums.length - 1;
