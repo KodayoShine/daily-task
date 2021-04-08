@@ -16,6 +16,12 @@ package com.test.yg.algorithm;
  */
 public class LeetCode153 {
 
+    /**
+     * 采用二分法的方式 查询数组内最小的值
+     *
+     * @param nums
+     * @return
+     */
     public int findMin(int[] nums) {
         int l = 0;
         int r = nums.length - 1;
