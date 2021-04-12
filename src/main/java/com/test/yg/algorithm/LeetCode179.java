@@ -20,10 +20,9 @@ public class LeetCode179 {
      * @return
      */
     public String largestNumber(int[] nums) {
-        int len = nums.length;
         //排序，s1 + s2 > s2 + s1
-        for (int i = 0; i < len - 1; i++) {
-            for (int j = i + 1; j < len; j++) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
                 //b+a
                 String str1 = "" + nums[j] + nums[i];
                 //a+b
@@ -36,13 +35,16 @@ public class LeetCode179 {
                 }
             }
         }
-        if (nums[0] == 0) {
-            return "0";
-        }
         StringBuffer sbf = new StringBuffer();
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < nums.length; i++) {
             sbf.append(nums[i]);
         }
-        return sbf.toString();
+        int len = sbf.length();
+        int k = 0;
+        while (k < len - 1 && sbf.charAt(k) == '0') {
+            k++;
+        }
+        return sbf.substring(k);
     }
+
 }
