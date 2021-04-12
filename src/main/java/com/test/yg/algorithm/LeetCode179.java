@@ -13,13 +13,21 @@ package com.test.yg.algorithm;
  */
 public class LeetCode179 {
 
+    /**
+     * 冒泡排序,依次判断两个数值合成str后 哪个数值更大
+     *
+     * @param nums
+     * @return
+     */
     public String largestNumber(int[] nums) {
         int len = nums.length;
         //排序，s1 + s2 > s2 + s1
         for (int i = 0; i < len - 1; i++) {
             for (int j = i + 1; j < len; j++) {
-                String str1 = "" + nums[j] + nums[i];  //b+a
-                String str2 = "" + nums[i] + nums[j];  //a+b
+                //b+a
+                String str1 = "" + nums[j] + nums[i];
+                //a+b
+                String str2 = "" + nums[i] + nums[j];
                 // 后者为b,大于前者则前移
                 if (Long.parseLong(str1) > Long.parseLong(str2)) {
                     int tmp = nums[i];

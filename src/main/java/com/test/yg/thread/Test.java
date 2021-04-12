@@ -1,5 +1,8 @@
 package com.test.yg.thread;
 
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class Test {
 
 
@@ -13,7 +16,12 @@ public class Test {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-       // pool.shutdown();
+
+        HashMap map = new HashMap();
+        map.put("a", "b");
+        map.size();
+        ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+        concurrentHashMap.put("a", "b");
     }
 
 }
