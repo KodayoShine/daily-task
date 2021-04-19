@@ -22,6 +22,7 @@ public class Test {
         map.size();
         ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
         concurrentHashMap.put("a", "b");
+        concurrentHashMap.get()
     }
 
 }
