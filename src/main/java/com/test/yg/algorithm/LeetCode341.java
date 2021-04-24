@@ -12,7 +12,7 @@ import java.util.List;
  * <p>
  * 输入: [[1,1],2,[1,1]]
  * 输出: [1,1,2,1,1]
- * 解释: 通过重复调用 next 直到 hasNext 返回 false，next 返回的元素的顺序应该是: [1,1,2,1,1]。
+ * 解释: 通过重复调用next 直到hasNext 返回 false，next返回的元素的顺序应该是: [1,1,2,1,1]。
  */
 public class LeetCode341 {
 

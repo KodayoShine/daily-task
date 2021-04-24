@@ -9,7 +9,7 @@ import java.util.Stack;
  * <p>
  * 如果 nums 中存在 132 模式的子序列 ，返回 true ；否则，返回 false 。
  * <p>
- *  
+ *
  * <p>
  * 进阶：很容易想到时间复杂度为 O(n^2) 的解决方案，你可以设计一个时间复杂度为 O(n logn) 或 O(n) 的解决方案吗？
  * <p>

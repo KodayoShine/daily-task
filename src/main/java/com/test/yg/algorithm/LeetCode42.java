@@ -10,6 +10,36 @@ package com.test.yg.algorithm;
 public class LeetCode42 {
 
     public int trap(int[] height) {
+        int total = 0;
+        for (int i = 1; i < height.length - 1; i++) {
+            int l = 0;
+            for (int j = i - 1; j >= 0; j--) {
+                if (height[j] > l) {
+                    l = height[j];
+                }
+            }
+            int r = 0;
+            for (int j = i + 1; j < height.length; j++) {
+                if (height[j] > r) {
+                    r = height[j];
+                }
+            }
+            int min = Math.min(l, r);
+            if (min > height[i]) {
+                total = total + (min - height[i]);
+            }
+        }
+        return total;
+    }
+
+
+    /**
+     * 超时了
+     *
+     * @param height
+     * @return
+     */
+    public int trap_1(int[] height) {
         int high = 0;
         for (int i = 0; i < height.length; i++) {
             int v = height[i];
