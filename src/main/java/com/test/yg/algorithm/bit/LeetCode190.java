@@ -1,4 +1,4 @@
-package com.test.yg.algorithm;
+package com.test.yg.algorithm.bit;
 
 public class LeetCode190 {
 

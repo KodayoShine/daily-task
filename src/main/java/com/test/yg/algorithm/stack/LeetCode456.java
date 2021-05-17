@@ -1,4 +1,4 @@
-package com.test.yg.algorithm;
+package com.test.yg.algorithm.stack;
 
 import java.util.Stack;
 

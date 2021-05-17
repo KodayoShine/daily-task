@@ -1,7 +1,6 @@
-package com.test.yg.algorithm;
+package com.test.yg.algorithm.linked;
 
 import lombok.Data;
-import lombok.val;
 
 /**
  * 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。

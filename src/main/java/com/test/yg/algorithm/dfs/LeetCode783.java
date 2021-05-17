@@ -1,4 +1,4 @@
-package com.test.yg.algorithm;
+package com.test.yg.algorithm.dfs;
 
 import java.util.ArrayList;
 import java.util.Collections;

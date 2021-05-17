@@ -1,4 +1,4 @@
-package com.test.yg.algorithm;
+package com.test.yg.algorithm.binTree;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.test.yg.algorithm;
+package com.test.yg.algorithm.binSearch;
 
 /**
  * 峰值元素是指其值大于左右相邻值的元素。

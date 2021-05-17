@@ -1,4 +1,4 @@
-package com.test.yg.algorithm;
+package com.test.yg.algorithm.kmp;
 
 /**
  * 实现strStr()函数。
