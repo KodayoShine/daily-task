@@ -29,6 +29,7 @@ public class LeetCode889 {
     private TreeNode dfs(int[] pre, int preLeft, int preRight, int[] post, int postLeft, int postRight, Map<Integer, Integer> map) {
         if (preLeft > preRight) {
             return null;
+            
         }
         TreeNode root = new TreeNode(pre[preLeft]);
         if (preLeft == preRight) {
