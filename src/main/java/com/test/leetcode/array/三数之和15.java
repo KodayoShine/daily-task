@@ -120,9 +120,5 @@ public class 三数之和15 {
 
         return new ArrayList<>(allList);
     }*/
-    public static void main(String[] args) {
-        List<List<Integer>> lists = threeSum(new int[]{-1, 0, 1, 0});
-
-    }
 
 }
